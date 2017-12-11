@@ -7,6 +7,7 @@ export default class App extends React.Component {
     super();
     this.state = {
       isAuthenticated: false,
+      name: '',
     };
   }
 
@@ -15,7 +16,9 @@ export default class App extends React.Component {
     const db = firebase.database();
     const ref = db.ref('name');
     ref.on('value', snapshot => {
-      console.log(snapshot.val());
+      this.setState({
+        name: snapshot.val(),
+      });
     });
   }
 
@@ -34,7 +37,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Open 2222121 sds sup App.js to start working on your app!</Text>
+        <Text>Welcome, {this.state.name}!</Text>
       </View>
     );
   }
