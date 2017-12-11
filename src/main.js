@@ -1,13 +1,40 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import firebase from 'react-native-firebase';
 
 export default class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      isAuthenticated: false,
+    };
+  }
+
+  getData() {
+    console.log('init');
+    const db = firebase.database();
+    const ref = db.ref('name');
+    ref.on('value', snapshot => {
+      console.log(snapshot.val());
+    });
+  }
+
+  componentDidMount() {
+    firebase
+      .auth()
+      .signInAnonymously()
+      .then(() => {
+        this.setState({
+          isAuthenticated: true,
+        });
+        this.getData();
+      });
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text>Open 22221 up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu</Text>
+        <Text>Open 2222121 sds sup App.js to start working on your app!</Text>
       </View>
     );
   }
