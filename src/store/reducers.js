@@ -1,1 +1,2 @@
-export user from './modules/user'
+export user from '@modules/user'
+export nav from '@modules/nav'
