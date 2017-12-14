@@ -2,15 +2,18 @@
 
 import React from 'react';
 import { View, Text, Button } from 'react-native';
+import { navigateSingIn, navigateSignUp } from '@modules/nav';
 
-const HomeScreen = ({ navigation }: any) => (
+export const HomeScreen = ({ navigation }: any) => (
   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    <Text>Home Screen</Text>
+    <Text>Home</Text>
     <Button
-      onPress={() => navigation.dispatch({ type: 'Login' })}
-      title="Login"
+      onPress={() => navigation.dispatch(navigateSingIn())}
+      title="Sign In"
+    />
+    <Button
+      onPress={() => navigation.dispatch(navigateSignUp())}
+      title="Sign Up"
     />
   </View>
 );
-
-export default HomeScreen;

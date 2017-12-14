@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import store from '@store/create';
-import Navigator from '@screens';
+import Navigator from '@routes';
 
 const App = () => (
   <Provider store={store}>
