@@ -3,7 +3,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { StackNavigator, addNavigationHelpers } from 'react-navigation';
-
 import { LoginNavigator } from '@routes/login';
 import { AppNavigator } from '@routes/app';
 
