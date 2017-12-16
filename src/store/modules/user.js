@@ -2,7 +2,11 @@
 
 const LOGIN = 'app/user/LOGIN';
 
-export default function user(state: any = 'Opop', action: any = {}) {
+const initialState = {
+  id: 'blablabla',
+};
+
+export default function user(state: any = initialState, action: any = {}) {
   switch (action.type) {
     default:
       return state;
