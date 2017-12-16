@@ -9,11 +9,11 @@ import { AppNavigator } from '@routes/app';
 
 export const RootNavigator = StackNavigator(
   {
-    Login: {
-      screen: LoginNavigator,
-    },
     App: {
       screen: AppNavigator,
+    },
+    Login: {
+      screen: LoginNavigator,
     },
   },
   {
