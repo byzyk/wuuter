@@ -4,14 +4,11 @@ import { NavigationActions } from 'react-navigation';
 import { RootNavigator } from '@routes';
 
 const { getStateForAction } = RootNavigator.router;
-// const { BACK, INIT, NAVIGATE, RESET, SET_PARAMS, URI } = NavigationActions;
 
 const initialState = null;
 
 export default function nav(state: any = initialState, action: any) {
-  const s = getStateForAction(action, state) || state;
-  console.log('STATE:', s);
-  return s;
+  return getStateForAction(action, state) || state;
 }
 
 export function navigateHome() {

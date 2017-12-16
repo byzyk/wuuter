@@ -11,6 +11,5 @@ export const SignInScreen = ({ navigation }: any) => (
       onPress={() => navigation.dispatch(navigateSignUp())}
       title="signup"
     />
-    <Button onPress={() => navigation.dispatch(navigateHome())} title="home" />
   </View>
 );
