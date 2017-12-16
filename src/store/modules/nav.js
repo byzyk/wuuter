@@ -7,9 +7,9 @@ const { getStateForAction } = RootNavigator.router;
 
 const initialState = null;
 
-export default function nav(state: any = initialState, action: any) {
+export const nav = (state: any = initialState, action: any) => {
   return getStateForAction(action, state) || state;
-}
+};
 
 export function navigateHome() {
   return NavigationActions.navigate({ routeName: 'Home' });
