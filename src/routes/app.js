@@ -2,7 +2,7 @@
 
 import { StackNavigator } from 'react-navigation';
 import { ROUTE_HOME } from '@routes/routes';
-import { HomeScreen } from '@screens/home';
+import { HomeScreen } from '@screens/Home';
 
 export const AppNavigator = StackNavigator(
   {
