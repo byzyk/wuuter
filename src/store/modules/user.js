@@ -1,20 +1,19 @@
-// @flow
+export const SIGNIN = 'app/user/SIGNIN';
 
-const LOGIN = 'app/user/LOGIN';
+const initialState = null;
 
-const initialState = {
-  id: 'blablabla',
-};
-
-export const user = (state: any = null, action: any = {}) => {
+export const user = (state: any = initialState, action: any = {}) => {
   switch (action.type) {
+    case SIGNIN:
+      return { ...action.payload };
     default:
       return state;
   }
 };
 
-export function userLogin() {
+export function userSignIn(payload) {
   return {
-    type: LOGIN,
+    type: SIGNIN,
+    payload,
   };
 }
