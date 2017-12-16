@@ -1,14 +1,12 @@
 // @flow
 
-import React from 'react';
-import { connect } from 'react-redux';
-import { StackNavigator, addNavigationHelpers } from 'react-navigation';
-
+import { StackNavigator } from 'react-navigation';
+import { ROUTE_HOME } from '@routes/routes';
 import { HomeScreen } from '@screens/home';
 
 export const AppNavigator = StackNavigator(
   {
-    Home: {
+    [ROUTE_HOME]: {
       screen: HomeScreen,
     },
   },

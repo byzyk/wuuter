@@ -1,19 +1,13 @@
 // @flow
 
-import React from 'react';
-import { connect } from 'react-redux';
-import { StackNavigator, addNavigationHelpers } from 'react-navigation';
-
+import { StackNavigator } from 'react-navigation';
+import { ROUTE_SIGNIN } from '@routes/routes';
 import { SignInScreen } from '@screens/signin';
-import { SignUpScreen } from '@screens/signup';
 
 export const LoginNavigator = StackNavigator(
   {
-    SignIn: {
+    [ROUTE_SIGNIN]: {
       screen: SignInScreen,
-    },
-    SignUp: {
-      screen: SignUpScreen,
     },
   },
   {

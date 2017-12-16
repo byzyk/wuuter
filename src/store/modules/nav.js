@@ -2,6 +2,7 @@
 
 import { NavigationActions } from 'react-navigation';
 import { RootNavigator } from '@routes';
+import { ROUTE_HOME, ROUTE_SIGNIN } from '@routes/routes';
 
 const { getStateForAction } = RootNavigator.router;
 
@@ -12,13 +13,9 @@ export const nav = (state: any = initialState, action: any) => {
 };
 
 export function navigateHome() {
-  return NavigationActions.navigate({ routeName: 'Home' });
+  return NavigationActions.navigate({ routeName: ROUTE_HOME });
 }
 
-export function navigateSingIn() {
-  return NavigationActions.navigate({ routeName: 'SignIn' });
-}
-
-export function navigateSignUp() {
-  return NavigationActions.navigate({ routeName: 'SignUp' });
+export function navigateSignIn() {
+  return NavigationActions.navigate({ routeName: ROUTE_SIGNIN });
 }
