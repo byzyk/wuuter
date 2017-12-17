@@ -41,6 +41,7 @@ class SignInForm extends React.Component {
 
   render() {
     const { containerStyle, inputStyle, errorStyle } = styles;
+    const passwordRef = el => (this.passwordRef = el);
 
     return (
       <View style={containerStyle}>
@@ -55,13 +56,13 @@ class SignInForm extends React.Component {
           value={this.state.email}
           onChangeText={email => this.setState({ email })}
           onSubmitEditing={() => {
-            this.refs.password.focus();
+            this.passwordRef.focus();
           }}
         />
         <TextInput
           style={inputStyle}
           placeholder="PASSWORD"
-          ref="password"
+          ref={passwordRef}
           secureTextEntry={true}
           returnKeyType="done"
           onChangeText={password => this.setState({ password })}
