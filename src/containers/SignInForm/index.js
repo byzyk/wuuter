@@ -2,7 +2,6 @@ import React from 'react';
 import { AsyncStorage, View, TextInput, Button, Text } from 'react-native';
 import { connect } from 'react-redux';
 import firebase from 'react-native-firebase';
-import { userSignIn, userSignOut } from '@modules/user';
 import { navigateApp } from '@modules/nav';
 import styles from './styles';
 
@@ -14,15 +13,7 @@ class SignInForm extends React.Component {
   }
 
   componentDidMount() {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        this.signIn(user);
-      } else {
-        if (this.props.user.uid) {
-          this.props.signOut();
-        }
-      }
-    });
+    console.log('login init');
   }
 
   onSubmit() {
@@ -30,17 +21,9 @@ class SignInForm extends React.Component {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then(user => {
-        this.signIn(user);
-      })
       .catch(error => {
         console.log(error);
       });
-  }
-
-  signIn(user) {
-    this.props.signIn(user._user);
-    this.props.navigateApp();
   }
 
   render() {
@@ -84,8 +67,6 @@ const mapStateToProps = ({ user }) => ({
 
 const mapDispatchToProps = dispatch => ({
   navigateApp: () => dispatch(navigateApp()),
-  signIn: payload => dispatch(userSignIn(payload)),
-  signOut: () => dispatch(userSignOut()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignInForm);
