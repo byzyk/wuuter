@@ -5,17 +5,19 @@ import { connect } from 'react-redux';
 import { StackNavigator, addNavigationHelpers } from 'react-navigation';
 import { LoginNavigator } from '@routes/login';
 import { AppNavigator } from '@routes/app';
+import { ROUTE_APP, ROUTE_LOGIN } from '@routes/routes';
 
 export const RootNavigator = StackNavigator(
   {
-    App: {
+    [ROUTE_APP]: {
       screen: AppNavigator,
     },
-    Login: {
+    [ROUTE_LOGIN]: {
       screen: LoginNavigator,
     },
   },
   {
+    initialRouteName: ROUTE_LOGIN,
     headerMode: 'none',
     mode: 'modal',
     navigationOptions: {

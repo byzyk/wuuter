@@ -1,29 +1,42 @@
 import React from 'react';
-import { View, TextInput, Button, Text } from 'react-native';
+import { AsyncStorage, View, TextInput, Button, Text } from 'react-native';
 import { connect } from 'react-redux';
 import firebase from 'react-native-firebase';
 import { userSignIn } from '@modules/user';
+import { navigateApp } from '@modules/nav';
 import styles from './styles';
 
 class SignInForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { email: '', password: '' };
+    this.state = { email: 'bohdan.kh@gmail.com', password: '111111' };
+  }
+
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.signIn(user);
+      }
+    });
   }
 
   onSubmit() {
     const { email, password } = this.state;
-    console.log(email, password);
-    const signIn = firebase.auth().signInWithEmailAndPassword(email, password);
-    signIn
-      .then(data => {
-        console.log(data);
-        this.props.userSignIn(data._user);
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(user => {
+        this.signIn(user);
       })
       .catch(error => {
         console.log(error);
       });
+  }
+
+  signIn(user) {
+    this.props.userSignIn(user._user);
+    this.props.navigateHome();
   }
 
   render() {
@@ -58,6 +71,7 @@ class SignInForm extends React.Component {
 
 const mapDispatchToProps = dispatch => ({
   userSignIn: payload => dispatch(userSignIn(payload)),
+  navigateHome: () => dispatch(navigateApp()),
 });
 
 export default connect(null, mapDispatchToProps)(SignInForm);

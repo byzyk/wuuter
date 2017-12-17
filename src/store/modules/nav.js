@@ -16,6 +16,10 @@ export function navigateHome() {
   return NavigationActions.navigate({ routeName: ROUTE_HOME });
 }
 
+export function navigateApp() {
+  return NavigationActions.navigate({ routeName: 'App' });
+}
+
 export function navigateSignIn() {
   return NavigationActions.navigate({ routeName: ROUTE_SIGNIN });
 }
