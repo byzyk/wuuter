@@ -2,7 +2,7 @@ import React from 'react';
 import { AsyncStorage, View, TextInput, Button, Text } from 'react-native';
 import { connect } from 'react-redux';
 import firebase from 'react-native-firebase';
-import { userSignIn } from '@modules/user';
+import { userSignIn, userSignOut } from '@modules/user';
 import { navigateApp } from '@modules/nav';
 import styles from './styles';
 
@@ -17,6 +17,10 @@ class SignInForm extends React.Component {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.signIn(user);
+      } else {
+        if (this.props.user.uid) {
+          this.props.signOut();
+        }
       }
     });
   }
@@ -35,8 +39,8 @@ class SignInForm extends React.Component {
   }
 
   signIn(user) {
-    this.props.userSignIn(user._user);
-    this.props.navigateHome();
+    this.props.signIn(user._user);
+    this.props.navigateApp();
   }
 
   render() {
@@ -64,14 +68,24 @@ class SignInForm extends React.Component {
           onPress={this.onSubmit.bind(this)}
           title="SIGN IN"
         />
+        <Button
+          color="#FFFFFF"
+          onPress={this.props.navigateApp.bind(this)}
+          title="HOME"
+        />
       </View>
     );
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  userSignIn: payload => dispatch(userSignIn(payload)),
-  navigateHome: () => dispatch(navigateApp()),
+const mapStateToProps = ({ user }) => ({
+  user,
 });
 
-export default connect(null, mapDispatchToProps)(SignInForm);
+const mapDispatchToProps = dispatch => ({
+  navigateApp: () => dispatch(navigateApp()),
+  signIn: payload => dispatch(userSignIn(payload)),
+  signOut: () => dispatch(userSignOut()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignInForm);

@@ -14,11 +14,11 @@ export const auth = ({ getState, dispatch }: any) => (next: any) => (
       next(action);
     } else {
       const state = getState();
-      if (state.user) {
+      if (state.user.uid) {
         next(action);
       } else {
         console.log('AUTH: Access denied.');
-        dispatch(navigateSignIn());
+        // dispatch(navigateSignIn());
       }
     }
   }
