@@ -1,5 +1,4 @@
 import React from 'react';
-import { View } from 'react-native';
 import { connect } from 'react-redux';
 import firebase from 'react-native-firebase';
 import { navigateApp, navigateLogin } from '@modules/nav';
