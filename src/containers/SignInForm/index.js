@@ -1,33 +1,46 @@
 import React from 'react';
-import { AsyncStorage, View, TextInput, Button, Text } from 'react-native';
+import {
+  ActivityIndicator,
+  View,
+  Text,
+  TextInput,
+  Button,
+  Keyboard,
+} from 'react-native';
 import { connect } from 'react-redux';
 import firebase from 'react-native-firebase';
-import { navigateApp } from '@modules/nav';
 import styles from './styles';
 
 class SignInForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { email: 'bohdan.kh@gmail.com', password: '111111' };
+    this.state = {
+      email: '',
+      password: '',
+      loading: false,
+      error: null,
+    };
   }
 
   componentDidMount() {
     console.log('login init');
   }
 
-  onSubmit() {
+  submit() {
+    Keyboard.dismiss();
+    this.setState({ loading: true, error: null });
     const { email, password } = this.state;
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
       .catch(error => {
-        console.log(error);
+        this.setState({ loading: false, error: error.toString() });
       });
   }
 
   render() {
-    const { containerStyle, inputStyle, buttonStyle } = styles;
+    const { containerStyle, inputStyle, errorStyle } = styles;
 
     return (
       <View style={containerStyle}>
@@ -36,26 +49,38 @@ class SignInForm extends React.Component {
           placeholder="EMAIL"
           keyboardType="email-address"
           autoCorrect={false}
+          autoFocus={true}
+          autoCapitalize="none"
           returnKeyType="next"
           value={this.state.email}
           onChangeText={email => this.setState({ email })}
+          onSubmitEditing={() => {
+            this.refs.password.focus();
+          }}
         />
         <TextInput
           style={inputStyle}
           placeholder="PASSWORD"
+          ref="password"
           secureTextEntry={true}
+          returnKeyType="done"
           onChangeText={password => this.setState({ password })}
+          onSubmitEditing={() => {
+            this.submit();
+          }}
         />
-        <Button
-          color="#FFFFFF"
-          onPress={this.onSubmit.bind(this)}
-          title="SIGN IN"
-        />
-        <Button
-          color="#FFFFFF"
-          onPress={this.props.navigateApp.bind(this)}
-          title="HOME"
-        />
+        {this.state.loading ? (
+          <ActivityIndicator size="large" color="#ffffff" />
+        ) : (
+          <Button
+            color="#FFFFFF"
+            onPress={this.submit.bind(this)}
+            title="SIGN IN"
+          />
+        )}
+        {this.state.error ? (
+          <Text style={errorStyle}>{this.state.error}</Text>
+        ) : null}
       </View>
     );
   }
@@ -65,8 +90,4 @@ const mapStateToProps = ({ user }) => ({
   user,
 });
 
-const mapDispatchToProps = dispatch => ({
-  navigateApp: () => dispatch(navigateApp()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(SignInForm);
+export default connect(mapStateToProps)(SignInForm);

@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Button, Text } from 'react-native';
 import { connect } from 'react-redux';
 import firebase from 'react-native-firebase';
-import { navigateLogin } from '@modules/nav';
 
 class Home extends React.Component {
   constructor(props) {
@@ -14,12 +13,7 @@ class Home extends React.Component {
   }
 
   signOut() {
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        this.props.navigateLogin();
-      });
+    firebase.auth().signOut();
   }
 
   render() {
@@ -37,8 +31,4 @@ const mapStateToProps = ({ user }) => ({
   user,
 });
 
-const mapDispatchToProps = dispatch => ({
-  navigateLogin: () => dispatch(navigateLogin()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps)(Home);

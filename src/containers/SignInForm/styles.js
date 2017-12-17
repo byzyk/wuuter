@@ -14,6 +14,11 @@ const styles = {
     borderRadius: 3,
     width: '80%',
   },
+  errorStyle: {
+    color: '#8E3B46',
+    textAlign: 'center',
+    marginTop: 20,
+  },
 };
 
 export default styles;
