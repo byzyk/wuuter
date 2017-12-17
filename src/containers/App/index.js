@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import firebase from 'react-native-firebase';
-import { navigateApp } from '@modules/nav';
+import { navigateApp, navigateLogin } from '@modules/nav';
 import { userSignIn, userSignOut } from '@modules/user';
 
 class AppContainer extends React.Component {
@@ -16,9 +16,7 @@ class AppContainer extends React.Component {
       if (user) {
         this.signIn(user);
       } else {
-        if (this.props.user.uid) {
-          this.props.signOut();
-        }
+        this.signOut();
       }
     });
   }
@@ -26,6 +24,13 @@ class AppContainer extends React.Component {
   signIn(user) {
     this.props.signIn(user._user);
     this.props.navigateApp();
+  }
+
+  signOut() {
+    if (this.props.user.uid) {
+      this.props.navigateLogin();
+      this.props.signOut();
+    }
   }
 
   render() {
@@ -39,6 +44,7 @@ const mapStateToProps = ({ user }) => ({
 
 const mapDispatchToProps = dispatch => ({
   navigateApp: () => dispatch(navigateApp()),
+  navigateLogin: () => dispatch(navigateLogin()),
   signIn: payload => dispatch(userSignIn(payload)),
   signOut: () => dispatch(userSignOut()),
 });
