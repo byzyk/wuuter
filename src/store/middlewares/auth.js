@@ -18,7 +18,6 @@ export const auth = ({ getState, dispatch }: any) => (next: any) => (
         next(action);
       } else {
         console.log('AUTH: Access denied.');
-        // dispatch(navigateSignIn());
       }
     }
   }

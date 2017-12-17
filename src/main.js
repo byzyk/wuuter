@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import store from '@store';
+import AppContainer from '@containers/App';
 import Navigator from '@routes';
 import { navigateSignIn } from '@modules/nav';
 
-// Navigate HOME by default
-// store.dispatch(navigateSignIn());
-
 const App = () => (
   <Provider store={store}>
-    <Navigator />
+    <AppContainer>
+      <Navigator />
+    </AppContainer>
   </Provider>
 );
 
