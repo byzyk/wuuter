@@ -12,7 +12,7 @@ const { getStateForAction } = RootNavigator.router;
 const initialState = null;
 
 export const nav = (state: any = initialState, action: any) => {
-  const { type, routeName } = action;
+  const { routeName } = action;
   // dirty fix to prevent double loading same route multiple times
   // see more: https://github.com/react-community/react-navigation/issues/2599
   if (state && state.routes) {
