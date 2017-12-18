@@ -1,4 +1,4 @@
-const styles = {
+export default {
   containerStyle: {
     padding: 30,
     width: '100%',
@@ -14,6 +14,9 @@ const styles = {
     borderRadius: 3,
     width: '80%',
   },
+  errorStyle: {
+    color: '#8E3B46',
+    textAlign: 'center',
+    marginTop: 20,
+  },
 };
-
-export default styles;

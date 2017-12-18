@@ -26,7 +26,17 @@ export const RootNavigator = StackNavigator(
   },
 );
 
-const Root = ({ dispatch, nav }) => {
+type Props = {
+  nav: State,
+  dispatch: any,
+};
+
+type State = {
+  index: number,
+  routes: Array<any>,
+};
+
+const Root = ({ dispatch, nav }: Props) => {
   const navigation = addNavigationHelpers({
     dispatch,
     state: nav,

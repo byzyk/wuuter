@@ -1,14 +1,23 @@
+// @flow
+
 import React from 'react';
 import { View, Button, Text } from 'react-native';
 import { connect } from 'react-redux';
+import firebase from 'react-native-firebase';
 
-class Home extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+type Props = {
+  user: {
+    email: string,
+  },
+};
 
+class Home extends React.Component<Props> {
   componentDidMount() {
     console.log('home init');
+  }
+
+  signOut() {
+    firebase.auth().signOut();
   }
 
   render() {
@@ -16,11 +25,7 @@ class Home extends React.Component {
       <View>
         <Text>Welcome</Text>
         <Text>Email: {this.props.user.email}</Text>
-        {/* <Button
-          color="#FFFFFF"
-          onPress={this.onSubmit.bind(this)}
-          title="SIGN OUT"
-        /> */}
+        <Button onPress={this.signOut.bind(this)} title="SIGN OUT" />
       </View>
     );
   }

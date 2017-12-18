@@ -1,12 +1,11 @@
 // @flow
 
 import React from 'react';
-import { View, Text, Button } from 'react-native';
-import { navigateHome } from '@modules/nav';
-import SignInForm from '@containers/SignInForm';
+import { View } from 'react-native';
+import { SignInForm } from '@components/SignInForm';
 import styles from './styles';
 
-export const SignInScreen = ({ navigation }: any) => (
+export const SignInScreen = () => (
   <View style={styles}>
     <SignInForm />
   </View>
