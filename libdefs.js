@@ -5,3 +5,7 @@ declare module 'react-native' {
 declare module 'react-navigation' {
   declare var exports: any;
 }
+
+declare module 'react-native-firebase' {
+  declare var exports: any;
+}
