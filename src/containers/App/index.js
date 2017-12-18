@@ -5,8 +5,9 @@ import { connect } from 'react-redux';
 import firebase from 'react-native-firebase';
 import { navigateApp, navigateLogin } from '@modules/nav';
 import { userSignIn, userSignOut } from '@modules/user';
+import { Loading } from '@components/Loading';
 
-type Props = {
+export type Props = {
   signIn: Function,
   signOut: Function,
   navigateApp: Function,
@@ -17,7 +18,13 @@ type Props = {
   children: React.Element<any>,
 };
 
-class AppContainer extends React.Component<Props> {
+export type State = {
+  isLoaded: boolean,
+};
+
+class AppContainer extends React.Component<Props, State> {
+  state = { isLoaded: false };
+
   componentDidMount() {
     console.log('App init');
     firebase.auth().onAuthStateChanged(user => {
@@ -26,6 +33,7 @@ class AppContainer extends React.Component<Props> {
       } else {
         this.signOut();
       }
+      this.setState({ isLoaded: true });
     });
   }
 
@@ -42,7 +50,12 @@ class AppContainer extends React.Component<Props> {
   }
 
   render() {
-    return this.props.children;
+    const { isLoaded } = this.state;
+    return (
+      <Loading isLoading={!isLoaded} color="#92B4F4">
+        {this.props.children}
+      </Loading>
+    );
   }
 }
 

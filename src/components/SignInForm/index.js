@@ -1,16 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import {
-  ActivityIndicator,
-  View,
-  Text,
-  TextInput,
-  Button,
-  Keyboard,
-} from 'react-native';
-import { connect } from 'react-redux';
+import { View, Text, TextInput, Button, Keyboard } from 'react-native';
 import firebase from 'react-native-firebase';
+import { Loading } from '@components/Loading';
 import styles from './styles';
 
 type Props = {};
@@ -22,7 +15,7 @@ type State = {
   error: string | null,
 };
 
-class SignInForm extends React.Component<Props, State> {
+export class SignInForm extends React.Component<Props, State> {
   state = {
     email: '',
     password: '',
@@ -37,9 +30,9 @@ class SignInForm extends React.Component<Props, State> {
   }
 
   submit() {
-    Keyboard.dismiss();
-    this.setState({ loading: true, error: null });
     const { email, password } = this.state;
+    this.setState({ loading: true, error: null });
+    Keyboard.dismiss();
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
@@ -59,7 +52,6 @@ class SignInForm extends React.Component<Props, State> {
           placeholder="EMAIL"
           keyboardType="email-address"
           autoCorrect={false}
-          autoFocus={true}
           autoCapitalize="none"
           returnKeyType="next"
           value={this.state.email}
@@ -79,15 +71,13 @@ class SignInForm extends React.Component<Props, State> {
             this.submit();
           }}
         />
-        {this.state.loading ? (
-          <ActivityIndicator size="large" color="#ffffff" />
-        ) : (
+        <Loading isLoading={this.state.loading}>
           <Button
             color="#FFFFFF"
             onPress={this.submit.bind(this)}
             title="SIGN IN"
           />
-        )}
+        </Loading>
         {this.state.error ? (
           <Text style={errorStyle}>{this.state.error}</Text>
         ) : null}
@@ -95,9 +85,3 @@ class SignInForm extends React.Component<Props, State> {
     );
   }
 }
-
-const mapStateToProps = ({ user }) => ({
-  user,
-});
-
-export default connect(mapStateToProps)(SignInForm);
