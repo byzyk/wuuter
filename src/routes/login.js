@@ -2,12 +2,12 @@
 
 import { StackNavigator } from 'react-navigation';
 import { ROUTE_SIGNIN } from '@routes/routes';
-import { SignInScreen } from '@screens/SignIn';
+import { AuthScreen } from '@screens/Auth';
 
 export const LoginNavigator = StackNavigator(
   {
     [ROUTE_SIGNIN]: {
-      screen: SignInScreen,
+      screen: AuthScreen,
     },
   },
   {

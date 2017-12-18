@@ -38,7 +38,12 @@ class AppContainer extends React.Component<Props, State> {
   }
 
   signIn(user) {
-    this.props.signIn(user._user);
+    const { uid, email } = user._user;
+    const userData = {
+      uid,
+      email,
+    };
+    this.props.signIn(userData);
     this.props.navigateApp();
   }
 

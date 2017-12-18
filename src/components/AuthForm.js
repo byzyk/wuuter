@@ -4,7 +4,6 @@ import * as React from 'react';
 import { View, Text, TextInput, Button, Keyboard } from 'react-native';
 import firebase from 'react-native-firebase';
 import { Loading } from '@components/Loading';
-import styles from './styles';
 
 type Props = {};
 
@@ -15,10 +14,10 @@ type State = {
   error: string | null,
 };
 
-export class SignInForm extends React.Component<Props, State> {
+export class AuthForm extends React.Component<Props, State> {
   state = {
-    email: '',
-    password: '',
+    email: 'bohdan.kh@gmail.co',
+    password: '111111',
     loading: false,
     error: null,
   };
@@ -37,8 +36,24 @@ export class SignInForm extends React.Component<Props, State> {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .catch(error => {
-        this.setState({ loading: false, error: error.toString() });
+        if (error.code === 'auth/user-not-found') {
+          firebase
+            .auth()
+            .createUserWithEmailAndPassword(email, password)
+            .catch(error => {
+              this.showError(error.userInfo.NSLocalizedDescription);
+            });
+        } else {
+          this.showError(error.userInfo.NSLocalizedDescription);
+        }
       });
+  }
+
+  showError(error: string) {
+    this.setState({
+      loading: false,
+      error,
+    });
   }
 
   render() {
@@ -85,3 +100,26 @@ export class SignInForm extends React.Component<Props, State> {
     );
   }
 }
+
+const styles = {
+  containerStyle: {
+    padding: 30,
+    width: '100%',
+  },
+  inputStyle: {
+    backgroundColor: '#fff',
+    fontSize: 16,
+    textAlign: 'center',
+    marginBottom: 15,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    padding: 15,
+    borderRadius: 3,
+    width: '80%',
+  },
+  errorStyle: {
+    color: '#8E3B46',
+    textAlign: 'center',
+    marginTop: 20,
+  },
+};
