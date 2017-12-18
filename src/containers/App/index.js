@@ -1,14 +1,23 @@
-import React from 'react';
+// @flow
+
+import * as React from 'react';
 import { connect } from 'react-redux';
 import firebase from 'react-native-firebase';
 import { navigateApp, navigateLogin } from '@modules/nav';
 import { userSignIn, userSignOut } from '@modules/user';
 
-class AppContainer extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+type Props = {
+  signIn: Function,
+  signOut: Function,
+  navigateApp: Function,
+  navigateLogin: Function,
+  user: {
+    uid: string,
+  },
+  children: React.Element<any>,
+};
 
+class AppContainer extends React.Component<Props> {
   componentDidMount() {
     console.log('App init');
     firebase.auth().onAuthStateChanged(user => {

@@ -1,4 +1,6 @@
-import React from 'react';
+// @flow
+
+import * as React from 'react';
 import {
   ActivityIndicator,
   View,
@@ -11,17 +13,24 @@ import { connect } from 'react-redux';
 import firebase from 'react-native-firebase';
 import styles from './styles';
 
-class SignInForm extends React.Component {
-  constructor(props) {
-    super(props);
+type Props = {};
 
-    this.state = {
-      email: '',
-      password: '',
-      loading: false,
-      error: null,
-    };
-  }
+type State = {
+  email: string,
+  password: string,
+  loading: boolean,
+  error: string | null,
+};
+
+class SignInForm extends React.Component<Props, State> {
+  state = {
+    email: '',
+    password: '',
+    loading: false,
+    error: null,
+  };
+
+  passwordRef: any; // FIXME: find how to type react-native elements properly
 
   componentDidMount() {
     console.log('login init');

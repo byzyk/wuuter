@@ -7,5 +7,6 @@ export const logger = ({ getState }: any) => (next: any) => (action: any) => {
   console.log('ACTION\n', action);
   console.log('STATE\n', state);
   console.groupEnd();
+
   next(action);
 };
