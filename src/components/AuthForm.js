@@ -4,6 +4,7 @@ import * as React from 'react';
 import { View, Text, TextInput, Button, Keyboard } from 'react-native';
 import firebase from 'react-native-firebase';
 import { Loading } from '@components/Loading';
+import { COLOR_WHITE, COLOR_ERROR } from '@styles/colors';
 
 type Props = {};
 
@@ -88,7 +89,7 @@ export class AuthForm extends React.Component<Props, State> {
         />
         <Loading isLoading={this.state.loading}>
           <Button
-            color="#FFFFFF"
+            color={COLOR_WHITE}
             onPress={this.submit.bind(this)}
             title="SIGN IN"
           />
@@ -107,7 +108,7 @@ const styles = {
     width: '100%',
   },
   inputStyle: {
-    backgroundColor: '#fff',
+    backgroundColor: COLOR_WHITE,
     fontSize: 16,
     textAlign: 'center',
     marginBottom: 15,
@@ -118,7 +119,7 @@ const styles = {
     width: '80%',
   },
   errorStyle: {
-    color: '#8E3B46',
+    color: COLOR_ERROR,
     textAlign: 'center',
     marginTop: 20,
   },

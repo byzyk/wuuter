@@ -8,7 +8,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 export class ProfileScreen extends React.Component<{}> {
   static navigationOptions = {
     title: 'Profile',
-    tabBarIcon: () => <Icon name="user" size={24} color="#4472CA" />,
+    tabBarIcon: ({ tintColor }) => (
+      <Icon name="user" size={24} color={tintColor} />
+    ),
   };
 
   render() {

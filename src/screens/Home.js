@@ -8,7 +8,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 export class HomeScreen extends React.Component<{}> {
   static navigationOptions = {
     title: 'Home',
-    tabBarIcon: () => <Icon name="home" size={24} color="#4472CA" />,
+    tabBarIcon: ({ tintColor }) => (
+      <Icon name="home" size={24} color={tintColor} />
+    ),
   };
 
   render() {

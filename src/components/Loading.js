@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { ActivityIndicator } from 'react-native';
+import { COLOR_WHITE } from '@styles/colors';
 
 type Props = {
   isLoading: boolean,
@@ -12,7 +13,7 @@ type Props = {
 
 export const Loading = ({ isLoading, children, color, size }: Props) => {
   return isLoading ? (
-    <ActivityIndicator size={size || 'large'} color={color || '#fff'} />
+    <ActivityIndicator size={size || 'large'} color={color || COLOR_WHITE} />
   ) : (
     children || null
   );
