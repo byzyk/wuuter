@@ -8,6 +8,7 @@ import { COLOR_WHITE } from '@styles/colors';
 
 export class ProfileScreen extends React.Component<{}> {
   static navigationOptions = {
+    headerTitle: 'title',
     title: 'Profile',
     tabBarIcon: ({ tintColor }) => (
       <Icon name="user" size={30} color={tintColor} />
@@ -25,7 +26,6 @@ export class ProfileScreen extends React.Component<{}> {
 
 const style = {
   flex: 1,
-  alignItems: 'center',
-  justifyContent: 'center',
   backgroundColor: COLOR_WHITE,
+  padding: 20,
 };

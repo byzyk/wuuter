@@ -1,13 +1,15 @@
 // @flow
 
 import React from 'react';
-import { View, Button, Text } from 'react-native';
+import { View, Button } from 'react-native';
 import { connect } from 'react-redux';
 import firebase from 'react-native-firebase';
+import { ProfileName } from '@components/Profile/Name';
 
 type Props = {
   user: {
     email: string,
+    name: string,
   },
 };
 
@@ -23,8 +25,9 @@ class Profile extends React.Component<Props> {
   render() {
     return (
       <View>
-        <Text>PROFILE!!!</Text>
-        <Text>Email: {this.props.user.email}</Text>
+        <View>
+          <ProfileName name={this.props.user.email} />
+        </View>
         <Button onPress={this.signOut.bind(this)} title="SIGN OUT" />
       </View>
     );

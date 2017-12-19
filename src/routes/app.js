@@ -17,6 +17,8 @@ const routes = {
 
 const options = {
   initialRouteName: ROUTE_PROFILE,
+  animationEnabled: true,
+  lazy: true,
   tabBarPosition: 'bottom',
   tabBarOptions: {
     activeTintColor: COLOR_ACTIVE,

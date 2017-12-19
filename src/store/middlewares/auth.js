@@ -1,9 +1,9 @@
 // @flow
 
-import { ROUTE_AUTH } from '@routes/routes';
+import { ROUTE_LOGIN } from '@routes/routes';
 import { SIGNIN } from '@modules/user';
 
-const noAuthRoutes = [ROUTE_AUTH];
+const noAuthRoutes = [ROUTE_LOGIN];
 
 export const auth = ({ getState }: any) => (next: any) => (action: any) => {
   if (typeof action === 'object' && action.hasOwnProperty('type')) {

@@ -56,8 +56,8 @@ class AppContainer extends React.Component<Props, State> {
 
   signOut() {
     if (this.props.user.uid) {
-      this.props.navigateLogin();
       this.props.signOut();
+      this.props.navigateLogin();
     }
   }
 

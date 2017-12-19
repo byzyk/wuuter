@@ -21,7 +21,7 @@ type State = {
 
 export class AuthForm extends React.Component<Props, State> {
   state = {
-    email: 'bohdan.kh@gmail.co',
+    email: 'bohdan.kh@gmail.com',
     password: '111111',
     loading: false,
     error: null,
