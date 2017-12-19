@@ -1,26 +1,27 @@
 // @flow
 
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import '@store/middlewares/reactotron';
+import { combineReducers, applyMiddleware } from 'redux';
+import Reactotron from 'reactotron-react-native';
 import * as reducers from '@store/reducers';
-import { logger } from '@store/middlewares/logger';
 import { auth } from '@store/middlewares/auth';
 
 const isDebug = typeof atob !== 'undefined';
 
 // FIXME: refactor this
 // just to make app running without debugger enabled
-if (!isDebug) {
+// eslint-disable-next-line
+if (!isDebug || __DEV__) {
   // $FlowExpectedError
   console.log = function() {};
+
   // $FlowExpectedError
-  console.groupCollapsed = function() {};
-  // $FlowExpectedError
-  console.groupEnd = function() {};
+  console.log = Reactotron.log;
 }
 
-const store = createStore(
+const store = Reactotron.createStore(
   combineReducers({ ...reducers }),
-  applyMiddleware(logger, auth),
+  applyMiddleware(auth),
 );
 
 export default store;
