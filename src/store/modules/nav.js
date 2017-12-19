@@ -4,7 +4,7 @@ import {
   ROUTE_APP,
   ROUTE_LOGIN,
   ROUTE_HOME,
-  ROUTE_SIGNIN,
+  ROUTE_AUTH,
 } from '@routes/routes';
 
 const { getStateForAction } = RootNavigator.router;
@@ -37,5 +37,5 @@ export function navigateHome() {
 }
 
 export function navigateSignIn() {
-  return NavigationActions.navigate({ routeName: ROUTE_SIGNIN });
+  return NavigationActions.navigate({ routeName: ROUTE_AUTH });
 }

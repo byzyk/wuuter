@@ -1,19 +1,25 @@
 // @flow
 
-import { StackNavigator } from 'react-navigation';
-import { ROUTE_HOME } from '@routes/routes';
+import { TabNavigator } from 'react-navigation';
+import { ROUTE_HOME, ROUTE_PROFILE } from '@routes/routes';
 import { HomeScreen } from '@screens/Home';
+import { ProfileScreen } from '@screens/Profile';
 
-export const AppNavigator = StackNavigator(
-  {
-    [ROUTE_HOME]: {
-      screen: HomeScreen,
-    },
+const routes = {
+  [ROUTE_HOME]: {
+    screen: HomeScreen,
   },
-  {
-    headerMode: 'none',
-    navigationOptions: {
-      gesturesEnabled: false,
-    },
+  [ROUTE_PROFILE]: {
+    screen: ProfileScreen,
   },
-);
+};
+
+const options = {
+  initialRouteName: ROUTE_HOME,
+  headerMode: 'none',
+  navigationOptions: {
+    gesturesEnabled: false,
+  },
+};
+
+export const AppNavigator = TabNavigator(routes, options);

@@ -1,19 +1,20 @@
 // @flow
 
 import { StackNavigator } from 'react-navigation';
-import { ROUTE_SIGNIN } from '@routes/routes';
+import { ROUTE_AUTH } from '@routes/routes';
 import { AuthScreen } from '@screens/Auth';
 
-export const LoginNavigator = StackNavigator(
-  {
-    [ROUTE_SIGNIN]: {
-      screen: AuthScreen,
-    },
+const routes = {
+  [ROUTE_AUTH]: {
+    screen: AuthScreen,
   },
-  {
-    headerMode: 'none',
-    navigationOptions: {
-      gesturesEnabled: false,
-    },
+};
+
+const options = {
+  headerMode: 'none',
+  navigationOptions: {
+    gesturesEnabled: false,
   },
-);
+};
+
+export const LoginNavigator = StackNavigator(routes, options);
