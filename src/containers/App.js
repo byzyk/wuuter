@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import { StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import firebase from 'react-native-firebase';
 import { navigateApp, navigateLogin } from '@modules/nav';
@@ -75,6 +76,7 @@ class AppContainer extends React.Component<Props, State> {
     const { isLoaded } = this.state;
     return (
       <Loading isLoading={!isLoaded} color="#92B4F4">
+        <StatusBar hidden={true} />
         {this.props.children}
       </Loading>
     );

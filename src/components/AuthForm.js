@@ -4,7 +4,11 @@ import * as React from 'react';
 import { View, Text, TextInput, Button, Keyboard } from 'react-native';
 import firebase from 'react-native-firebase';
 import { Loading } from '@components/Loading';
-import { COLOR_WHITE, COLOR_ERROR } from '@styles/colors';
+import {
+  COLOR_WHITE,
+  COLOR_ERROR_PRIMARY,
+  COLOR_ERROR_BG,
+} from '@styles/colors';
 
 type Props = {};
 
@@ -119,8 +123,10 @@ const styles = {
     width: '80%',
   },
   errorStyle: {
-    color: COLOR_ERROR,
+    color: COLOR_ERROR_PRIMARY,
+    backgroundColor: COLOR_ERROR_BG,
     textAlign: 'center',
     marginTop: 20,
+    padding: 10,
   },
 };

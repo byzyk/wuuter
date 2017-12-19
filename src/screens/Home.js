@@ -9,7 +9,7 @@ export class HomeScreen extends React.Component<{}> {
   static navigationOptions = {
     title: 'Home',
     tabBarIcon: ({ tintColor }) => (
-      <Icon name="home" size={24} color={tintColor} />
+      <Icon name="home" size={30} color={tintColor} />
     ),
   };
 

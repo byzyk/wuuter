@@ -6,7 +6,7 @@ import { COLOR_WHITE } from '@styles/colors';
 
 type Props = {
   isLoading: boolean,
-  children?: React.Element<any>,
+  children?: React.Node,
   color?: string,
   size?: 'large' | 'small',
 };
