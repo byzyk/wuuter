@@ -16,9 +16,9 @@ const routes = {
 
 const options = {
   initialRouteName: ROUTE_HOME,
-  headerMode: 'none',
-  navigationOptions: {
-    gesturesEnabled: false,
+  tabBarPosition: 'bottom',
+  tabBarOptions: {
+    activeTintColor: '#e91e63',
   },
 };
 

@@ -1,11 +1,6 @@
 import { NavigationActions } from 'react-navigation';
 import { RootNavigator } from '@routes';
-import {
-  ROUTE_APP,
-  ROUTE_LOGIN,
-  ROUTE_HOME,
-  ROUTE_AUTH,
-} from '@routes/routes';
+import { ROUTE_APP, ROUTE_LOGIN, ROUTE_HOME, ROUTE_AUTH } from '@routes/routes';
 
 const { getStateForAction } = RootNavigator.router;
 

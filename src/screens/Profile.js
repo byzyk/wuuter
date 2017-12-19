@@ -1,10 +1,19 @@
 // @flow
 
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import Profile from '@containers/Profile';
 
-export const ProfileScreen = () => (
-  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    <Text>opop</Text>
-  </View>
-);
+export class ProfileScreen extends React.Component<{}> {
+  static navigationOptions = {
+    title: 'Profile',
+  };
+
+  render() {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Profile />
+      </View>
+    );
+  }
+}
