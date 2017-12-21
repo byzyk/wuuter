@@ -1,9 +1,10 @@
 // @flow
 
 import '@store/middlewares/reactotron';
-import { applyMiddleware } from 'redux';
+import { combineReducers, applyMiddleware } from 'redux';
+import promiseMiddleware from 'redux-promise';
 import Reactotron from 'reactotron-react-native';
-import { rootReducer } from '@modules/root';
+import * as reducers from '@store/reducers';
 import { auth } from '@store/middlewares/auth';
 
 const isDebug = typeof atob !== 'undefined';
@@ -18,6 +19,9 @@ if (!isDebug || __DEV__) {
   console.log = Reactotron.log;
 }
 
-const store = Reactotron.createStore(rootReducer, applyMiddleware(auth));
+const store = Reactotron.createStore(
+  combineReducers({ ...reducers }),
+  applyMiddleware(promiseMiddleware, auth),
+);
 
 export default store;
