@@ -2,9 +2,8 @@
 
 import '@store/middlewares/reactotron';
 import { applyMiddleware } from 'redux';
-import { createEpicMiddleware } from 'redux-observable';
 import Reactotron from 'reactotron-react-native';
-import { rootReducer, rootEpic } from '@modules/root';
+import { rootReducer } from '@modules/root';
 import { auth } from '@store/middlewares/auth';
 
 const isDebug = typeof atob !== 'undefined';
@@ -19,11 +18,6 @@ if (!isDebug || __DEV__) {
   console.log = Reactotron.log;
 }
 
-const epicMiddleware = createEpicMiddleware(rootEpic);
-
-const store = Reactotron.createStore(
-  rootReducer,
-  applyMiddleware(epicMiddleware, auth),
-);
+const store = Reactotron.createStore(rootReducer, applyMiddleware(auth));
 
 export default store;
