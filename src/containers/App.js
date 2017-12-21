@@ -39,16 +39,16 @@ class AppContainer extends React.Component<Props, State> {
   }
 
   signIn(user) {
-    const DB_USERS = firebase.database().ref('/users');
+    // const DB_USERS = firebase.database().ref('/users');
     const { uid, email } = user._user;
     const userData = {
       uid,
       email,
     };
 
-    if (!this.checkUserExists(DB_USERS, uid)) {
-      this.createNewUser(DB_USERS, userData);
-    }
+    // if (!this.checkUserExists(DB_USERS, uid)) {
+    //   this.createNewUser(DB_USERS, userData);
+    // }
 
     this.props.signIn(userData);
     this.props.navigateApp();
