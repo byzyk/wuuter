@@ -2,12 +2,12 @@
 
 import React from 'react';
 import { View } from 'react-native';
-import { AuthForm } from '@components/AuthForm';
+import Auth from '@containers/Auth';
 import { COLOR_PRIMARY } from '@styles/colors';
 
 export const AuthScreen = () => (
   <View style={styles}>
-    <AuthForm />
+    <Auth />
   </View>
 );
 

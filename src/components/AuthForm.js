@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { View, Text, TextInput, Button, Keyboard } from 'react-native';
-import firebase from 'react-native-firebase';
 import { Loading } from '@components/Loading';
 import {
   COLOR_WHITE,
@@ -10,7 +9,9 @@ import {
   COLOR_ERROR_BG,
 } from '@styles/colors';
 
-type Props = {};
+type Props = {
+  onSubmit: Function,
+};
 
 type State = {
   email: string,
@@ -34,24 +35,12 @@ export class AuthForm extends React.Component<Props, State> {
   }
 
   submit() {
-    const { email, password } = this.state;
     this.setState({ loading: true, error: null });
+
     Keyboard.dismiss();
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .catch(error => {
-        if (error.code === 'auth/user-not-found') {
-          firebase
-            .auth()
-            .createUserWithEmailAndPassword(email, password)
-            .catch(error => {
-              this.showError(error.userInfo.NSLocalizedDescription);
-            });
-        } else {
-          this.showError(error.userInfo.NSLocalizedDescription);
-        }
-      });
+
+    const { email, password } = this.state;
+    this.props.onSubmit({ email, password });
   }
 
   showError(error: string) {

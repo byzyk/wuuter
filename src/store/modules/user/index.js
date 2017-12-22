@@ -16,7 +16,14 @@ export default (state: any = initialState, action: any = {}) => {
   }
 };
 
-export function signIn(payload) {
+export function signInRequest(payload) {
+  return {
+    type: SIGNIN_REQUEST,
+    payload,
+  };
+}
+
+export function signInSuccess(payload) {
   return {
     type: SIGNIN_SUCCESS,
     payload,
