@@ -17,6 +17,7 @@ export type Props = {
     uid: string,
   },
   children: React.Element<any>,
+  dispatch: Function,
 };
 
 export type State = {
@@ -39,44 +40,25 @@ class AppContainer extends React.Component<Props, State> {
   }
 
   signIn(user) {
-    // const DB_USERS = firebase.database().ref('/users');
-    const { uid, email } = user._user;
-    const userData = {
-      uid,
-      email,
-    };
+    const { dispatch } = this.props;
 
-    // if (!this.checkUserExists(DB_USERS, uid)) {
-    //   this.createNewUser(DB_USERS, userData);
-    // }
-
-    this.props.signIn(userData);
-    this.props.navigateApp();
+    dispatch(userSignIn(user));
+    dispatch(navigateApp());
   }
 
   signOut() {
+    const { dispatch } = this.props;
     if (this.props.user.uid) {
-      this.props.signOut();
-      this.props.navigateLogin();
+      dispatch(userSignOut());
+      dispatch(navigateLogin());
     }
-  }
-
-  checkUserExists(db, uid) {
-    return db.child(uid);
-  }
-
-  createNewUser(db, userData) {
-    const userDataToSave = { ...userData };
-    const { uid } = userData;
-    userDataToSave.uid = undefined;
-    db.child(uid).set(userDataToSave);
   }
 
   render() {
     const { isLoaded } = this.state;
     return (
       <Loading isLoading={!isLoaded} color="#92B4F4">
-        <StatusBar hidden={true} />
+        <StatusBar animated={true} barStyle="default" />
         {this.props.children}
       </Loading>
     );
@@ -87,11 +69,4 @@ const mapStateToProps = ({ user }) => ({
   user,
 });
 
-const mapDispatchToProps = dispatch => ({
-  navigateApp: () => dispatch(navigateApp()),
-  navigateLogin: () => dispatch(navigateLogin()),
-  signIn: payload => dispatch(userSignIn(payload)),
-  signOut: () => dispatch(userSignOut()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
+export default connect(mapStateToProps)(AppContainer);

@@ -14,15 +14,4 @@ export default (state: any = initialState, action: any = {}) => {
   }
 };
 
-export function userSignIn(payload) {
-  return {
-    type: USER_SIGNIN,
-    payload,
-  };
-}
-
-export function userSignOut() {
-  return {
-    type: USER_SIGNOUT,
-  };
-}
+export { userSignIn, userSignOut } from './actions';
