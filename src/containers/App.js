@@ -5,7 +5,7 @@ import { StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import firebase from 'react-native-firebase';
 import { navigateApp, navigateLogin } from '@modules/nav';
-// import { signIn, signOut } from '@modules/user';
+import { signInSuccess, signOut } from '@modules/user';
 import { Loading } from '@components/Loading';
 
 export type Props = {
@@ -42,14 +42,14 @@ class AppContainer extends React.Component<Props, State> {
   signIn(user) {
     const { dispatch } = this.props;
 
-    // dispatch(signIn(user));
+    dispatch(signInSuccess(user));
     dispatch(navigateApp());
   }
 
   signOut() {
     const { dispatch } = this.props;
     if (this.props.user.uid) {
-      // dispatch(signOut());
+      dispatch(signOut());
       dispatch(navigateLogin());
     }
   }

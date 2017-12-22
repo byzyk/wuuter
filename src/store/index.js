@@ -18,9 +18,11 @@ if (!isDebug || __DEV__) {
   console.log = Reactotron.log;
 }
 
+const epicMiddleware = createEpicMiddleware(rootEpic);
+
 const store = Reactotron.createStore(
   rootReducer,
-  applyMiddleware(createEpicMiddleware(rootEpic), auth),
+  applyMiddleware(epicMiddleware, auth),
 );
 
 export default store;

@@ -3,25 +3,17 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { AuthForm } from '@components/AuthForm';
+import { signInRequest } from '@modules/user';
 
-class Auth extends React.Component<{}> {
+type Props = {
+  dispatch: Function,
+  si: any,
+};
+
+class Auth extends React.Component<Props> {
   signIn(user) {
-    console.log(user);
-    // firebase
-    //   .auth()
-    //   .signInWithEmailAndPassword(email, password)
-    //   .catch(error => {
-    //     if (error.code === 'auth/user-not-found') {
-    //       firebase
-    //         .auth()
-    //         .createUserWithEmailAndPassword(email, password)
-    //         .catch(error => {
-    //           this.showError(error.userInfo.NSLocalizedDescription);
-    //         });
-    //     } else {
-    //       this.showError(error.userInfo.NSLocalizedDescription);
-    //     }
-    //   });
+    const { dispatch } = this.props;
+    dispatch(signInRequest(user));
   }
 
   render() {

@@ -23,7 +23,12 @@ export function signInRequest(payload) {
   };
 }
 
-export function signInSuccess(payload) {
+export function signInSuccess(user) {
+  const { uid, email } = user;
+  const payload = {
+    uid,
+    email,
+  };
   return {
     type: SIGNIN_SUCCESS,
     payload,
